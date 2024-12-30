@@ -1,7 +1,10 @@
 // @generated automatically by Diesel CLI.
 
 pub mod sql_types {
-    #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
+    // #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
+    // #[diesel(postgres_type(name = "status_enum"))]
+
+    #[derive(diesel::sql_types::SqlType, Debug)]
     #[diesel(postgres_type(name = "status_enum"))]
     pub struct StatusEnum;
 }
