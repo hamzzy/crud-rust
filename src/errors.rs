@@ -4,7 +4,6 @@ use actix_web::{error::BlockingError, HttpResponse, ResponseError};
 use serde::{Deserialize, Serialize};
 use log::{error, info, warn};
 use validator::{Validate, ValidationErrors};
-use validator_derive::Validate;
 
 // Enhanced error response structure
 #[derive(Debug, Serialize)]

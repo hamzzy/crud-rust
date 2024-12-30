@@ -8,10 +8,6 @@ use serde::{Deserialize, Serialize};
 use validator::{Validate, ValidationErrors};
 use crate::schema::sql_types::StatusEnum;
 use crate::schema::task;
-use validator_derive::Validate;
-
-use chrono::NaiveDateTime;
-
 
 
 
@@ -45,9 +41,9 @@ pub struct NewTask {
 
 #[derive(Debug, Deserialize, Validate)]
 pub struct CreateTaskDto {
-    #[validate(length(min = 1, message = "Title must be between 1 and 100 characters"))]
+    #[validate(length(min = 1, message = "Title must  not be empty"))]
     pub title: String,
-    #[validate(length(min = 1, message = "Description cannot exceed 500 characters"))]
+    #[validate(length(min = 1, message = "Description must not be empty"))]
     pub description: Option<String>,
 }
 
@@ -55,9 +51,9 @@ pub struct CreateTaskDto {
 #[derive(Debug, Deserialize, Validate, AsChangeset)]
 #[diesel(table_name = crate::schema::task)]
 pub struct UpdateTaskDto {
-    #[validate(length(min = 1, max = 100, message = "Title must be between 1 and 100 characters"))]
+    #[validate(length(min = 1, message = "Title must  not be empty"))]
     pub title: Option<String>,
-    #[validate(length(max = 500, message = "Description cannot exceed 500 characters"))]
+    #[validate(length(min= 1, message = "Description must not be empty"))]
     pub description: Option<String>,
     pub status: Option<Status>,
 }
